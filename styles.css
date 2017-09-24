@@ -1,0 +1,42 @@
+body {
+  background-color:  #80aaff;
+  color: white;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 50px;
+  font-size: 20px;
+  text-align: center;
+}
+h1 {
+  font-weight: 300;
+  font-size: 40px;
+}
+input {
+  border: 2px solid white;
+  color: white;
+  background-color: transparent;
+  height: 23px;
+  width: 150px;
+  font-size: 20px;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 50;
+}
+::-webkit-input-placeholder {
+   color: white;
+  font-size: 20px;
+}
+button {
+  height: 23 px;
+  font-size: 20px;
+  color: white;
+  background-color: transparent;
+  border: 2px solid white;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 200;
+}
+button:hover {
+  background-color:  #b3ccff;
+  align: center;
+}
+#question{
+  text-align: left;
+}

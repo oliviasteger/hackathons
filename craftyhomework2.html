@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <title>Vocabulary Builder | Game</title>
+    <script src="https://rawgithub.com/craftyjs/Crafty/release/dist/crafty-min.js"></script>
+    <style>
+    html{
+    background-color:#80aaff;
+  }
+  body{
+color: white;
+    font-size: 23px;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 200;
+}
+  }
+  </style>
+  <link rel="shortcut icon" href="https://c528e55c-a-62cb3a1a-s-sites.googlegroups.com/site/csclubalpha/image/Piskett.ico?attachauth=ANoY7cokQgKKgcWDGlVEXv4AOe_baGiXmYmnExWePnDbfnOaRX8ujL3PpjkRymVklmz0jFmlxorOA-oPzTuMy7cYipivoahs41bz5H8HK0-75SZqVcCtSigkoG-vBWyqbaLPslVUqW9QFaZgwlNlj_he-L9uB5LAavKBOOBN5zXfnjOAhV9wWjP9ZF-35YlrYteAJmTPnCNU9K27PKlAMfkNfoAVYTMOIg%3D%3D&attredirects=0" type="image/x-icon" />
+  </head>
+  <body>
+  <b1>Hello! The goal is to move your player around in order to get through the obsstacles without touching the white line at the bottom of your screen. Good luck finding the goal!</b1>
+    <b1>Warning: When you finish, you will have to answer another vocabulary question.</b1>
+    <script>
+    var hit = false;
+      function hit() {
+        if (!hit){
+        window.location.href = "index.html";
+        alert("You've touched the floor... You lose. Time to answer another question before you can play again");
+        hit = true;
+      }
+    };
+
+    function Goal() {
+      if (!hit){
+        alert("You win!");
+        window.location.href = "index.html";
+        hit = true;
+      }
+    };
+    function generateRandomNumbers(){
+      var numbers = [];
+      for(var x = 0; x < 7; x++){
+        var element = {};
+        element["x"] = Math.floor((Math.random() * 400) + 400 );
+        element["width"] = Math.floor((Math.random() * 260) + 40 );
+        numbers.push(element);
+      }
+      return numbers;
+    }
+
+      function start() {
+        var numbers = generateRandomNumbers();
+        Crafty.init();
+          var player = Crafty.e("Player, 2D, DOM, Color, Twoway, Gravity, Solid, Collision");
+        player.attr({x: numbers[3].x, y: 100, w: 50, h: 50});
+        player.color("#000000");
+        player.twoway();
+        player.gravity("Platform");
+
+        var platform = Crafty.e("Platform, 2D, DOM, Color");
+    platform.attr({x: numbers[0].x, y:400, w: numbers[0].width, h:10});
+    platform.color("#FFFFFF");
+        var secondplatform = Crafty.e("Platform, 2D, DOM, Color");
+    secondplatform.attr({x: numbers[1].x, y:300, w: numbers[1].width, h:10});
+    secondplatform.color("#FFFFFF");
+        var thirdplatform = Crafty.e("Platform, 2D, DOM, Color");
+    thirdplatform.attr({x: numbers[2].x, y:200, w: numbers[2].width, h:10});
+    thirdplatform.color("#FFFFFF");
+        var fourthplatform = Crafty.e("Platform, 2D, DOM, Color");
+    fourthplatform.attr({x: numbers[3].x, y:100, w: numbers[3].width, h:10});
+    fourthplatform.color("#FFFFFF");
+        var fifthplatform = Crafty.e("Platform, 2D, DOM, Color");
+    fifthplatform.attr({x: numbers[4].x, y:400, w: numbers[4].width, h:10});
+    fifthplatform.color("#FFFFFF");
+        var sixthplatform = Crafty.e("Platform, 2D, DOM, Color");
+    sixthplatform.attr({x: numbers[5].x, y:500, w: numbers[5].width, h:10});
+    sixthplatform.color("#FFFFFF");
+
+        var goal = Crafty.e("2D, DOM, Color, Solid, Collision");
+      goal.attr({x: 0, y: 580, w: 1350, h: 5});
+      goal.color("#FFFF00");
+      goal.onHit("Player", hit);
+
+          var thelastone = Crafty.e("2D, DOM, Color, Solid, Collision");
+          thelastone.attr({x:numbers[6].x , y:560, w: numbers[6].width, h:10});
+          thelastone.color("#FFFFFF");
+          thelastone.onHit("Player", Goal);
+
+      }
+      window.onload = start;
+    </script>
+  </body>
+</html>

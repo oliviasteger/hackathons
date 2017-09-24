@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <!-- Latest compiled CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+  <script src="script.js"></script>
+  <link rel="shortcut icon" href="https://c528e55c-a-62cb3a1a-s-sites.googlegroups.com/site/csclubalpha/image/Piskett.ico?attachauth=ANoY7cokQgKKgcWDGlVEXv4AOe_baGiXmYmnExWePnDbfnOaRX8ujL3PpjkRymVklmz0jFmlxorOA-oPzTuMy7cYipivoahs41bz5H8HK0-75SZqVcCtSigkoG-vBWyqbaLPslVUqW9QFaZgwlNlj_he-L9uB5LAavKBOOBN5zXfnjOAhV9wWjP9ZF-35YlrYteAJmTPnCNU9K27PKlAMfkNfoAVYTMOIg%3D%3D&attredirects=0" type="image/x-icon" />
+  <title>Vocabulary Builder</title>
+</head>
+<body>
+  <h1>Vocabulary Builder</h1>
+<p>Learn new vocabulary using Merriam Webster. This game is created by teens, for teens in order to expand their vocabulary!</p>
+<p>You will be given the definition of the word, and based off of the definition, you will have to find the word. If you guess the
+  correct word, you can play a game. If you guess incorrectly, you have the chance to guess again.</p>
+  <br><br><br>
+<button id="start" onclick="getWords()">Start</button>
+<center>
+<div id="question" style="width:600px;">
+<span id="def"></span><br><br>
+<form  style="display: inline-block." action="">
+  <input type="radio" id="word1" name="choose" value="0"><label id="l1">Option 1</label>
+    <span onclick="speach1()" class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+  <br>
+
+  <input type="radio" id="word2" name="choose" value="1"><label id="l2">Option 2</label>
+  <span onclick="speach2()" class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+  <br>
+
+  <input type="radio" id="word3" name="choose" value="2"><label id="l3">Option 3</label>
+  <span onclick="speach3()" class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+  <br>
+
+  <input type="radio" id="word4" name="choose" value="3"><label id="l4">Option 4</label>
+    <span onclick="speach4()" class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+  <br>
+</form>
+<button id="submit" onclick="check()">Submit!</button><br><br>
+<br>
+<span>© InspectorElement, TheBlueCat5445, MayaBliffeld & BelierJavier</span>
+</center>
+</body>
+</html>

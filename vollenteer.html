@@ -1,0 +1,89 @@
+<html>
+
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cloudboost.io/js-sdk/cloudboost.js"></script>
+    <script src="protest.js"></script>
+    <script src="map2.js"></script>
+    <script src="issue.js"></script>
+    <script src="ProtestIssue.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel = "stylesheet" type = "text/css" href = "styles.css"/>
+    <link rel="shortcut icon" type="image/png" href="https://punchthrough.com/images/press/brand/fist-thumbnail.png"/>
+    <title>MyAction | Volunteer</title>
+    <style>
+    #map {
+      height: 100%;
+      padding: 0px;
+      margin: 0px;
+    }
+    </style>
+  </head>
+
+  <body>
+    <div id="header"><button id="login"><b>Log In!</b></button><button id="volunteer">Volunteer</button><button id="searchGuardian">Search the Guardian's Files</button><button id="manageOrg">Manage an organization!</button><button id="newProtest">Create a new protest!</button><button id="newOrg"><b>Create a new organization!</b></button><button id="newAccount"><b>Create a new user account!</b></button><button id="logOutButton"><b>Log Out</b></button></div><br>
+
+    <h2 id="info"></h2>
+    <center>
+      <div id="map"></div>
+      <ul id="issues"></ul>
+    </center>
+    <script>
+        CB.CloudApp.init('fqsljkxpzrnk', '6df70624-7b47-488b-8d35-559631eb9687');
+        $("#logout").click(function(){
+          window.location.href = "index.html";
+        });
+        $("#homeButton").click(function(){
+          window.location.href = "index.html";
+        })
+        $("#newAccount").click(function(){
+          window.location.href = "createaccount.html";
+        })
+
+        $("#manageOrg").click(function(){
+          window.location.href = "manageorganization.html";
+        })
+        $("#newOrg").click(function(){
+          window.location.href = "registerorganization.html";
+        })
+        $("#newProtest").click(function(){
+          window.location.href = "protest.html";
+        })
+        $("#searchGuardian").click(function(){
+          window.location.href = "guardianapi.html";
+        })
+        $("#volunteer").click(function(){
+          window.location.href = "vollenteer.html"
+        })
+let data;
+
+        $.ajax({
+          url:"https://data.cityofnewyork.us/resource/n4ac-3636.json",
+          data: {
+            "$$app_token" : "l5EqsIGj8hAtM9DK4n3MKDK87"
+
+          },
+          method: "GET",
+          async: false,
+          success: (result)=>{
+            console.log(result);
+            data = result;
+          },
+          error: (err)=>{
+            console.log(err);
+          }
+                })
+
+function update(){
+  for(index in data){
+    if(Boolean(data[index].locality)){
+    addPoint(data[index].locality.coordinates,data[index].org_title,data[index].summary);
+  }
+}
+}
+    </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_nllGlusVSrD4IDjcpNZM0Oa9JtmA2ls&callback=initMap" async defer></script>
+  </body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>My Action | My Issues</title>
+  <link rel = "stylesheet" type = "text/css" href = "styles.css"/>
+  <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+  <link rel="shortcut icon" type="image/png" href="https://punchthrough.com/images/press/brand/fist-thumbnail.png"/>
+   <script src="https://cloudboost.io/js-sdk/cloudboost.js"></script>
+   <script src="organization.js"></script>
+   <script src="protest.js"></script>
+   <script src="issue.js"></script>
+   <script src="OrganizationIssue.js"></script>
+   <script src="UserIssue.js"></script>
+</head>
+<body>
+  <div id="header"><button id="login"><b>Log In!</b></button><button id="volunteer">Volunteer</button><button id="searchGuardian">Search the Guardian's Files</button><button id="manageOrg">Manage an organization!</button><button id="newProtest">Create a new protest!</button><button id="newOrg"><b>Create a new organization!</b></button><button id="newAccount"><b>Create a new user account!</b></button></div><br>
+<div id="logIn" class="inputs">
+      <input id="username" placeholder="Username"></input><br>
+      <input id="password" type="password" placeholder="Password"></input><br>
+      <button id="loginButton">Log in!</button/><br><br>
+    </div>
+<div id="content">
+  <div id="inputs">
+  <input type="text" id="name" placeholder="Organization Name"><br>
+  <input type="text" id="description" placeholder="Description"><br>
+  <input type="text" id="url" placeholder="URL"><br>
+  <button id="update">Update my organization!</button>
+</div>
+</div>
+
+</div>
+<center>
+<script>
+$("#content").hide();
+//$("#myIssues").hide();
+let tags=[];
+let issues = [];
+let cOrg;
+    CB.CloudApp.init('fqsljkxpzrnk', '6df70624-7b47-488b-8d35-559631eb9687');
+
+  let user = new CB.CloudUser()
+  $("#loginButton").click(function() {
+        let username = $("#username").val()
+        let password = $("#password").val()
+        let userObj = new CB.CloudUser();
+        userObj.set('username', username);
+        userObj.set('password', password);
+        userObj.logIn({
+          success: (response) => {
+            console.log(response);
+            $("#logIn").hide();
+            $("#content").show();
+          let orgQuery = new CB.CloudQuery("Organization");
+          orgQuery.equalTo("name",CB.CloudUser.current.document.username);
+          orgQuery.find({
+            success: (response)=>{
+              console.log(response[0]);
+              cOrg = new Organization(response[0].document.name,response[0].document.description,response[0].document.websiteUrl,response[0]);
+              $("#name").val(response[0].document.name);
+              $("#description").val(response[0].document.description);
+              $("#url").val(response[0].document.websiteUrl);
+            },
+            error: (err) =>{
+              console.log(err);
+            }
+          })
+          },
+          error: (err) => {
+            console.log(err);
+            console.log("The username and password do not match");
+          }
+        })
+      })
+      $("#logOutButton").click(function() {
+        CB.CloudUser.current.logOut({
+          success: function(user) {
+          },
+          error: function(err) {
+            console.log(err);
+          }
+        });
+      })
+      $("#logout").click(function(){
+        window.location.href = "index.html";
+      });
+      $("#homeButton").click(function(){
+        window.location.href = "index.html";
+      })
+      $("#newAccount").click(function(){
+        window.location.href = "createaccount.html";
+      })
+
+      $("#manageOrg").click(function(){
+        window.location.href = "manageorganization.html";
+      })
+      $("#newOrg").click(function(){
+        window.location.href = "registerorganization.html";
+      })
+      $("#newProtest").click(function(){
+        window.location.href = "protest.html";
+      })
+      $("#searchGuardian").click(function(){
+        window.location.href = "guardianapi.html";
+      })
+      $("#volunteer").click(function(){
+        window.location.href = "vollenteer.html"
+      })
+$("#update").click(function(){
+  let name = $("#name").val()
+  let description = $("#description").val()
+  let url = $("#url").val()
+cOrg.name = name;
+cOrg.description=description;
+cOrg.url=url;
+cOrg.save();
+})
+
+</script>
+</html>

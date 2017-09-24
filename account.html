@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>My Action | My Issues</title>
+  <link rel = "stylesheet" type = "text/css" href = "styles.css"/>
+  <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+  <link rel="shortcut icon" type="image/png" href="https://punchthrough.com/images/press/brand/fist-thumbnail.png"/>
+   <script src="https://cloudboost.io/js-sdk/cloudboost.js"></script>
+   <script src="organization.js"></script>
+   <script src="OrganizationOwner.js"></script>
+   <script src="issue.js"></script>
+   <script src="OrganizationIssue.js"></script>
+   <script src="UserIssue.js"></script>
+</head>
+<body>
+  <div id="header"><button id="login"><b>Log In!</b></button><button id="volunteer">Volunteer</button><button id="searchGuardian">Search the Guardian's Files</button><button id="manageOrg">Manage an organization!</button><button id="newProtest">Create a new protest!</button><button id="newOrg"><b>Create a new organization!</b></button><button id="newAccount"><b>Create a new user account!</b></button><button id="logOutButton"><b>Log Out</b></button></div><br>
+<div id="logIn" class="inputs">
+      <input id="username" placeholder="Username"></input><br>
+      <input id="password" type="password" placeholder="Password"></input><br>
+      <button id="loginButton">Log in!</button/><br><br>
+    </div>
+<div id="content">
+  <div id="myIssues">
+<p>Please select the issues that are of interest to you.</p>
+<div id="tags">
+  </div>
+  <button onclick="updateTags()" id="updateTags">Update My Interests</button><br><br>
+  <button onclick="goIssues()">View Other Issues</button><br><br>
+  <p>Or, add your own interest here.</p>
+  <input type="text" id="issueName" placeholder="Issue's Name"></input><br>
+  <input type="text" id="issueDescription" placeholder="Issue's Description"></input><br>
+  <button id="newIssue">Add My Issue</button>
+</div>
+<ul id="charities">
+</ul>
+</div>
+<center>
+<script>
+let tags=[];
+let issues = [];
+//$("#myIssues").hide();
+    CB.CloudApp.init('fqsljkxpzrnk', '6df70624-7b47-488b-8d35-559631eb9687');
+    displayTags();
+    if(Boolean(CB.CloudUser.current)){
+      $("#logIn").hide();
+    }
+    else{
+    $("#content").hide();
+    }
+    function displayTags(){
+      tags=[];
+      $("#tags").empty();
+      let tagQuery= new CB.CloudQuery("Issue");
+      tagQuery.find({
+        success: (list)=>{
+          $("#tags").empty();
+          $("#charities").empty();
+          console.log(list);
+          for(index in list){
+  console.log("hi");
+            $("#tags").append(`<input type="checkbox" name="tag" value="${index}" id="tag${index}">${list[index].document.name}</input></br>`)
+            tags.push(list[index]);
+            let issueObj = new Issue(list[index].document.name,list[index].document.description,list[index]);
+            issues.push(issueObj);
+            displayIssueOrganization(index);
+
+            $("#charities").append(` <li><div class="charity" id="issue${index}"><h2>${list[index].document.name}</h2><div id="orgs${index}"></div></div></li>`);
+
+              if(index == list.length-1){
+                checkTags();
+              }
+          }
+        },
+        error: (err)=>{
+          console.log(err);
+        }
+      })
+    }
+  let user = new CB.CloudUser()
+  $("#loginButton").click(function() {
+        let username = $("#username").val()
+        let email = $("#email").val()
+        let password = $("#password").val()
+        let userObj = new CB.CloudUser();
+        userObj.set('username', username);
+        userObj.set('email', email);
+        userObj.set('password', password);
+        userObj.logIn({
+          success: (response) => {
+            console.log(response);
+            $("#logIn").hide();
+
+            displayTags();
+          },
+          error: (err) => {
+            console.log(err);
+            console.log("The username and password do not match");
+          }
+        })
+      })
+      $("#logOutButton").click(function() {
+        CB.CloudUser.current.logOut({
+          success: function(user) {
+            $("#logIn").show();
+            $("#content").hide();
+          },
+          error: function(err) {
+            console.log(err);
+          }
+        });
+      })
+      $("#logout").click(function(){
+        window.location.href = "index.html";
+      });
+      $("#homeButton").click(function(){
+        window.location.href = "index.html";
+      })
+      $("#newAccount").click(function(){
+        window.location.href = "createaccount.html";
+      })
+      displayTags();
+      $("#newIssue").click(function(){
+        console.log("click");
+        let name = $("#issueName").val();
+        let description = $("#issueDescription").val();
+        let cloudObj = new CB.CloudObject("Issue");
+        let issueObj = new Issue(name,description,cloudObj);
+        console.log(issueObj);
+        issueObj.save();
+      })
+      let userIssues =[];
+      function checkTags(){
+        for(index in tags){
+          chkTags(index);
+        }
+      }
+      function chkTags(index){
+        let tagQuery = new CB.CloudQuery("UserIssue");
+        tagQuery.equalTo("issue_id",tags[index]);
+        tagQuery.equalTo("user_id",CB.CloudUser.current);
+        tagQuery.find({
+          success: (response)=>{
+            console.log(response);
+            if(response.length>0){
+              $(`#tag${index}`).prop("checked",true);
+              let userIssueObj = new UserIssue(CB.CloudUser.current,tags[index],response[0])
+              userIssues.push(userIssueObj);
+            }
+          },
+          error: (err)=>{
+            console.log(err);
+          }
+        })
+      }
+      function updateTags(){
+        console.log("updating");
+        let index =-1;
+        for(userIssue of userIssues){
+        userIssue.delete();
+        }
+        $("input:checkbox:checked").each(function(){
+          index++;
+          console.log(index);
+          console.log($(this).val());
+          cloudObj2 = new CB.CloudObject("UserIssue");
+          let userIssueObj = new UserIssue(CB.CloudUser.current,tags[index],cloudObj2);
+          userIssueObj.save();
+          index++;
+    });
+      }
+      function goIssues(){
+        window.location.href = "issues.html";
+      }
+      function displayIssueOrganization(index){
+        let issueOrgQuery = new CB.CloudQuery("OrganizationIssue");
+        issueOrgQuery.equalTo("issue_id",issues[index]._cloudObj);
+        issueOrgQuery.find({
+          success:(list)=>{
+            console.log(list)
+            for(item of list){
+              displayOrganization(item.document.organization_id.document._id,index);
+            }
+          },
+          error: (err)=>{
+            console.log(err);
+          }
+        })
+      }
+      function displayOrganization(org_id,index){
+        let orgQuery = new CB.CloudQuery("Organization");
+        orgQuery.equalTo("_id",org_id);
+        orgQuery.find({
+          success: (response)=>{
+            if(response.length>0){
+            console.log(response[0]);
+            $(`#orgs${index}`).html(` <br><div>
+            <a href="${response[0].document.websiteUrl}">${response[0].document.name}</a>
+<p>${response[0].document.description}</p>
+</div>  </br> `);}
+          },
+          error: (err)=>{
+            log(err);
+          }
+        })
+      }
+      $("#logout").click(function(){
+        window.location.href = "index.html";
+      });
+      $("#homeButton").click(function(){
+        window.location.href = "index.html";
+      })
+      $("#newAccount").click(function(){
+        window.location.href = "createaccount.html";
+      })
+      $("#manageOrg").click(function(){
+        window.location.href = "manageorganization.html";
+      })
+      $("#newOrg").click(function(){
+        window.location.href = "registerorganization.html";
+      })
+      $("#newProtest").click(function(){
+        window.location.href = "protest.html";
+      })
+      $("#searchGuardian").click(function(){
+        window.location.href = "guardianapi.html";
+      })
+</script>
+</html>

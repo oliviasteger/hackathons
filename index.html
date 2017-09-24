@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>My Action | Account</title>
+    <link rel = "stylesheet" type = "text/css" href = "styles.css"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" type="image/png" href="https://punchthrough.com/images/press/brand/fist-thumbnail.png"/>
+  </head>
+  <body>
+    <div id="header"><button id="logIn"><b>Log In!</b></button><button id="volunteer">Volunteer</button><button id="searchGuardian">Search the Guardian's Files</button><button id="manageOrg">Manage an organization!</button><button id="newProtest">Create a new protest!</button><button id="newOrg"><b>Create a new organization!</b></button><button id="newAccount"><b>Create a new user account!</b></button><button id="logOutButton"><b>Log Out</b></button></div><br>
+  <div class="container">
+  <div class="title">What is My Action?</div>
+    <div id="intro">
+      My Action is a program that allows you
+      to learn more about issues that you are interested in.
+      It also connects you with charities that support your issues.
+      When you sign up, you will be asked to choose issues that you
+      are interested in. If you are a charity, you can sign up and be
+      displayed with the issues you support.
+    </div>
+  <script>
+  $("#logout").click(function(){
+    window.location.href = "index.html";
+  });
+  $("#logIn").click(function(){
+    window.location.href = "account.html";
+  })
+  $("#newAccount").click(function(){
+    window.location.href = "createaccount.html";
+  })
+
+  $("#manageOrg").click(function(){
+    window.location.href = "manageorganization.html";
+  })
+  $("#newOrg").click(function(){
+    window.location.href = "registerorganization.html"; //gh-pages
+  })
+  $("#newProtest").click(function(){
+    window.location.href = "protest.html";
+  })
+  $("#searchGuardian").click(function(){
+    window.location.href = "guardianapi.html";
+  })
+  </script>
+  </div>
+  </body>
+</html>

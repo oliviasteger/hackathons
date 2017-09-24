@@ -1,0 +1,6 @@
+framework module Pods_My_ActionsTests {
+  umbrella header "Pods-My ActionsTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

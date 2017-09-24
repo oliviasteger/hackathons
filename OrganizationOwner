@@ -1,0 +1,46 @@
+class Organization{
+  consructor(name,description,url,cloudObj){
+    this.name=name;
+    this.description=description;
+    this.url=url;
+    this._cloudObj=cloudObj;
+  }
+  set name(name){
+    this._name=name;
+    this._cloudObj.set("name",name);
+  }
+  get name(){
+    return this.cloudObj.get("name");
+  }
+  set description(description){
+    this._description=description;
+    this._cloudObj.set("description",description);
+  }
+  get description(){
+    return this.cloudObj.get("description");
+  }
+  set url(url){
+    this._url=url;
+    this._cloudObj.set("url",url);
+  }
+  get url(){
+    return this.cloudObj.get("url");
+  }
+  save() {
+   this.cloudObj.save({
+     success: (obj) => {},
+     error: (err) => {
+       console.log(err);
+     }
+   });
+ }
+ delete() {
+   this.cloudObj.delete({
+     success: (obj) => {},
+     error: (err) => {
+       console.log(err);
+       $(".error").html(err);
+     }
+   });
+ }
+}

@@ -1,0 +1,150 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://cloudboost.io/js-sdk/cloudboost.js"></script>
+    <script src="organization.js"></script>
+    <script src="OrganizationOwner.js"></script>
+    <script src="issue.js"></script>
+    <script src="OrganizationIssue.js"></script>
+    <link rel = "stylesheet" type = "text/css" href = "styles.css"/>
+    <link rel="shortcut icon" type="image/png" href="https://punchthrough.com/images/press/brand/fist-thumbnail.png"/>
+  </head>
+
+  <body>
+    <div id="header"><button id="login"><b>Log In!</b></button><button id="volunteer">Volunteer</button><button id="searchGuardian">Search the Guardian's Files</button><button id="manageOrg">Manage an organization!</button><button id="newProtest">Create a new protest!</button><button id="newOrg"><b>Create a new organization!</b></button><button id="newAccount"><b>Create a new user account!</b></button><button id="logOutButton"><b>Log Out</b></button></div><br>
+    <h1 id="log">Register Your Organization</h2>
+    <h2 id="info"></h2>
+    <center>
+      <div id="newOrganization">
+        <p> To register your organization please fill out the following information.</p><br>
+        <input type="text" id="name" placeholder="Organization Name"><br>
+        <input type="text" id="description" placeholder="Description"><br>
+        <input type="text" id="email" placeholder="Email"><br>
+        <input type="text" id="url" placeholder="URL"><br>
+        <input type="password" id="password" placeholder="Password"><br>
+        <input type="password" id="confirmPassword" placeholder="Password Confirmation"><br>
+        <div id="tags">
+        </div>
+        <input type="text" id="issueName" placeholder="Other"></input><br><input type="text" id="issueDescription" placeholder="Description"><br></input><button id="newIssue">Add Option</button>
+        <br><br><button id="create">Create Organization</button><br><br>
+      </div>
+    </center>
+    <script>
+    let tags=[];
+        CB.CloudApp.init('fqsljkxpzrnk', '6df70624-7b47-488b-8d35-559631eb9687');
+        function displayTags(){
+          tags=[];
+          let tagQuery= new CB.CloudQuery("Issue");
+          tagQuery.find({
+            success: (list)=>{
+              $("#tags").empty();
+              console.log(list);
+              for(index in list){
+
+                $("#tags").append(`<br><input type="checkbox" name="tag" value="${index}" id="tag${index}">${list[index].document.name}</input></br>`)
+                tags.push(list[index]);
+              }
+            },
+            error: (err)=>{
+              console.log(err);
+            }
+          })
+        }
+      $("#create").click(function() {
+        let name = $("#name").val()
+        let description = $("#description").val()
+        let email = $("#email").val()
+        let url = $("#url").val()
+        let password = $("#password").val()
+        let confirmPassword = $("#confirmPassword").val()
+        if (Boolean(name) && Boolean(email) && Boolean(password) && Boolean(confirmPassword)) {
+          if (password == confirmPassword) {
+            let userObj = new CB.CloudUser();
+            userObj.set('username', name);
+            userObj.set('email', email);
+            userObj.set('password', password);
+            userObj.signUp({
+              success: (response) => {
+                console.log(response);
+                let cloudObj = new CB.CloudObject("Organization");
+                console.log(cloudObj);
+                let organizationObj = new Organization(name, description,url, cloudObj);
+                console.log(organizationObj);
+                organizationObj.save();
+                let cloudObj2 = new CB.CloudObject("OrganizationOwner");
+                console.log(cloudObj);
+                console.log(response);
+                console.log(cloudObj2);
+                let organizationOwnerObj = new OrganizationOwner(response, cloudObj, cloudObj2);
+                console.log(organizationOwnerObj);
+                organizationOwnerObj.save();
+                $("input").val("");
+                let index = -1;
+                $("input:checkbox:checked").each(function(){
+                  index+=1;
+                  console.log($(this).val());
+                  cloudObj2 = new CB.CloudObject("OrganizationIssue");
+                  let organizationIssueObj = new OrganizationIssue(cloudObj,tags[index],cloudObj2);
+                  organizationIssueObj.save();
+            });
+              },
+              error: (err) => {
+                console.log(err);
+                if (err == `{"error":"Invalid data in column email of table User. It should be of type Email"}`) {
+                  $("#info").html(`Please enter a valid email.`);
+                }
+                if (err == `{"error":"Username already exists"}`) {
+                  $("#info").html(`The username ${username} already exists.`);
+                  $("input").val("");
+                }
+              }
+
+            });
+          } else {
+            $("#info").text("Do not match");
+          }
+        } else {
+          $("#info").text("fill out all feilds");
+        }
+      })
+
+      displayTags();
+      $("#newIssue").click(function(){
+        console.log("click");
+        let name = $("#issueName").val();
+        let description = $("#issueDescription").val();
+        let cloudObj = new CB.CloudObject("Issue");
+        let issueObj = new Issue(name,description,cloudObj);
+        console.log(issueObj);
+        issueObj.save();
+        displayTags();
+      })
+      $("#logout").click(function(){
+        window.location.href = "index.html";
+      });
+      $("#homeButton").click(function(){
+        window.location.href = "index.html";
+      })
+      $("#newAccount").click(function(){
+        window.location.href = "createaccount.html";
+      })
+
+      $("#manageOrg").click(function(){
+        window.location.href = "manageorganization.html";
+      })
+      $("#newOrg").click(function(){
+        window.location.href = "registerorganization.html";
+      })
+      $("#newProtest").click(function(){
+        window.location.href = "protest.html";
+      })
+      $("#searchGuardian").click(function(){
+        window.location.href = "guardianapi.html";
+      })
+      $("#volunteer").click(function(){
+        window.location.href = "vollenteer.html"
+      })
+    </script>
+  </body>
+
+</html>

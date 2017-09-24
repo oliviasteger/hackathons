@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>My Action | My Issues</title>
+  <link rel = "stylesheet" type = "text/css" href = "styles.css"/>
+  <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+  <link rel="shortcut icon" type="image/png" href="https://punchthrough.com/images/press/brand/fist-thumbnail.png"/>
+</head>
+<body>
+  <div id="header"><button id="login"><b>Log In!</b></button><button id="volunteer">Volunteer</button><button id="searchGuardian">Search the Guardian's Files</button><button id="manageOrg">Manage an organization!</button><button id="newProtest">Create a new protest!</button><button id="newOrg"><b>Create a new organization!</b></button>
+    <button id="newAccount"><b>Create a new user account!</b></button><button id="logOutButton"><b>Log Out</b></button></div><br>
+<br>
+<center>
+<div id="contain">
+<div class="information"><b><center>Women's Choice</center></b>
+More than forty years ago, the U.S. Supreme Court decided Roe v. Wade, the landmark case that secured a woman’s right to abortion. Since then, extremist politicians have been trying to take that decision out of a woman’s hands.
+</div>
+
+<div class="information"><b><center>Criminal Justice </center></b>
+Criminal justice reform is a type of reform aimed at fixing perceived errors in the criminal justice system. Goals of such reform include decreasing the United States' prison population and reducing prison sentences and eliminating mandatory minimum sentences for low-level drug offenders.
+<br></div>
+
+<div class="information"><b><center>Cybersecurity</center></b>
+As more of our daily lives are lived in the digital world, the security of our personal information online has become of paramount importance. Recent high-profile data breaches and hacking conducted by both government agencies and private companies highlight the need to protect sensitive data from thieves and spies while also maintaining Americans’ privacy.
+<br></div>
+
+<div class="information"><b><center>Domestic Abuse</center></b>
+Domestic violence, sexual assault and harassment, and other forms of gender-based violence deprive people of their fundamental ability to live with dignity. Governments, institutions, laws, and policies contribute to the systematic devaluation of the lives and safety of women and girls by failing to respond to gender-based violence and discriminating against those who have experienced abuse and violence.
+<br></div>
+
+<div class="information"><b><center>Homelessness</center></b>
+For too many people, the experience of homelessness involves police encounters, lockups, courts, or jail and prison cells as much as it does shelter beds. In fact, our national data shows that the number of Americans caught in a revolving door between the streets or shelters and jails may number in the tens of thousands. Of the 11 million people detained or incarcerated in jails every year, as many as 15 percent report having been homeless. Roughly 48,000 people entering shelters every year are coming nearly directly from prisons or jails.
+<center></div>
+
+<div class="information"><b><center>Women's Rights</center></b>
+A look back at history shows that women have made great strides in the fight for equality, including women’s suffrage and inroads in equal opportunity in the workplace and education. Despite the tremendous progress made in the struggle for gender equality, women still face violence, discrimination, and institutional barriers to equal participation in society.
+<br></div>
+</div>
+</body>
+<script>
+$("#logout").click(function(){
+  window.location.href = "index.html";
+});
+$("#homeButton").click(function(){
+  window.location.href = "index.html";
+})
+$("#newAccount").click(function(){
+  window.location.href = "createaccount.html";
+})
+
+$("#manageOrg").click(function(){
+  window.location.href = "manageorganization.html";
+})
+$("#newOrg").click(function(){
+  window.location.href = "registerorganization.html";
+})
+$("#newProtest").click(function(){
+  window.location.href = "protest.html";
+})
+$("#searchGuardian").click(function(){
+  window.location.href = "guardianapi.html";
+})
+$("#volunteer").click(function(){
+  window.location.href = "vollenteer.html"
+})
+</script>
+</html>

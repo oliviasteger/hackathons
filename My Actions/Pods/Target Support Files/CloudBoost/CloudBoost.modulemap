@@ -1,0 +1,6 @@
+framework module CloudBoost {
+  umbrella header "CloudBoost-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,10 @@
+framework module CloudBoost {
+  umbrella header "CloudBoost.h"
+
+  export *
+  module * { export * }
+}
+
+module CloudBoost.Swift {
+    header "CloudBoost-Swift.h"
+}

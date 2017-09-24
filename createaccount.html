@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>My Action | Create Account</title>
+  <link rel = "stylesheet" type = "text/css" href = "styles.css"/>
+  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+  <script src="https://cloudboost.io/js-sdk/cloudboost.js"></script>
+  <link rel="shortcut icon" type="image/png" href="https://punchthrough.com/images/press/brand/fist-thumbnail.png"/>
+</head>
+<body>
+  <div id="header"><button id="login"><b>Log In!</b></button><button id="volunteer">Volunteer</button><button id="searchGuardian">Search the Guardian's Files</button><button id="manageOrg">Manage an organization!</button><button id="newProtest">Create a new protest!</button><button id="newOrg"><b>Create a new organization!</b></button><button id="newAccount"><b>Create a new user account!</b></button><button id="logOutButton"><b>Log Out</b></button></div><br>
+<center>
+<h1>Create An Account</h1>
+<input id="firstName" placeholder="First Name"></input><br><input id="lastName" placeholder="Last Name"></input><br>
+<input id="email" placeholder="Email"></input><br>
+<input id="username" placeholder="Username"></input><br>
+<input type="password" id="password" placeholder="Password"></input><br>
+<input type="password" id="passwordConfirm" placeholder="Password Confirmation"></input><br>
+<button id="create">Create an account!</button/><br>
+<script>
+CB.CloudApp.init('fqsljkxpzrnk', '6df70624-7b47-488b-8d35-559631eb9687');
+$("#create").click(function(){
+  if ($("#password").val() == $("#passwordConfirm").val()) {
+    var obj = new CB.CloudUser();
+    obj.set("username", $("#username").val());
+    obj.set("password", $("#password").val());
+    obj.set("email", $("#email").val());
+    obj.set("verified", true);
+    obj.set("firstName", $("#firstName").val());
+    obj.set("lastName", $("#lastName").val());
+    console.log("efwef");
+    obj.signUp({
+      success:(response)=>{
+        console.log(response);
+      },
+      error: (err)=>{
+        console.log(err);
+      }
+    })
+  }
+  else {
+    $("<center><p>Your first and second passwords don't match.</p>").appendTo("body");
+  }
+})
+$("#logout").click(function(){
+  window.location.href = "index.html";
+});
+$("#homeButton").click(function(){
+  window.location.href = "index.html";
+})
+$("#newAccount").click(function(){
+  window.location.href = "createaccount.html";
+})
+
+$("#manageOrg").click(function(){
+  window.location.href = "manageorganization.html";
+})
+$("#newOrg").click(function(){
+  window.location.href = "registerorganization.html";
+})
+$("#newProtest").click(function(){
+  window.location.href = "protest.html";
+})
+$("#searchGuardian").click(function(){
+  window.location.href = "guardianapi.html";
+})
+</script>
+</body>
+</html>

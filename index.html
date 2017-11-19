@@ -3,95 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-  <title>olivia steger</title>
-  <link rel="icon" href="logo.png" type="image/png">
-  <style>
-    body {
-      background-color: #E0E7E9;
-      font-family: 'Montserrat', sans-serif;
-      color: #354649;
-      font-size: 12px;
-    }
-    #name {
-      width: 100%;
-      text-align: center;
-      margin: 0px;
-      padding-top: 10px;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: bold;
-    }
-    #topName {
-      font-size: 36px;
-      padding: 0px;
-      margin-bottom: 0px;
-      color: #6C7A89;
-    }
-    #bottomName {
-      letter-spacing: 1px;
-      font-size: 10px;
-      margin-top: 0px;
-      padding: 0px;
-      color: #A3C6C4;
-      margin-bottom: 40px;
-    }
-    .text {
-      width: 60%;
-      margin-left: 20%;
-      margin-right: 20%;
-      line-height: 175%;
-    }
-    @media screen and (max-width: 504px) {
-      .text {
-        width: 90%;
-        margin-left: 5%;
-      }
-    }
-    .footer {
-      width: 60%;
-      margin-bottom: 0px;
-      padding: 0px;
-      margin-left: 20%;
-      padding-bottom: 0px;
-      margin-right: 20%;
-      text-align: center;
-    }
-    .fa {
-      margin-right: 10%;
-      color: #6C7A89;
-    }
-    @media screen and (max-width: 504px) {
-      .fa {
-        margin-right: 25%;
-        color: #6C7A89;
-      }
-    }
-    .fa:hover {
-      color: #A3C6C4;
-    }
-    a {
-      text-decoration: none;
-    }
-    .textLink {
-      color: #6C7A89;
-    }
-    .textLink:hover {
-      color: #A3C6C4;
-    }
-  </style>
-</head>
+  <title>timeTracker</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="shortcut icon" href="./favicon.png"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,700" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+  <script src="https://cloudboost.io/js-sdk/cloudboost.js"></script>
 <body>
-<div id="name">
-  <p id="topName">OLIVIA</p>
-  <p id="bottomName">STEGER</p>
-</div>
-<center>
-<a href="https://oliviasteger.github.io/hackathons/stuyhacks/index.html" id="bottomName">Nanotes (Best Beginner Hack at StuyHacks)</a>
-<br>
-  <a href="https://oliviasteger.github.io/hackathons/myaction/index.html" id="bottomName">MyAction (Learn More About Current Issues)</a>
-<br>
-  <a href="https://oliviasteger.github.io/hackathons/defhacks/index.html" id="bottomName">Vocabulary Builder (Learn Words From Merriam Webster)</a>
-<br><br><br>
+  <center><img style="margin-top: 10%; margin-bottom: 10px;" src="./logo.png" height="100px" width="100px;"></img>
+  <form name="login">
+  <input class="formInput" type="text" name="userid" placeholder="Username"/><br>
+  <input class="formInput" type="password" name="pswrd" placeholder="Password"/><br>
+  <input id="formButton" type="button" onclick="check(this.form)" value="Submit"/>
+  </form>
+<script>
+function check(form) {
+ if(form.userid.value == "olivia" && form.pswrd.value == "hackriverdell"){
+    window.location.href = 'login.html';
+  } else {
+   alert("Error Password or Username");
+  }
+}
+</script>
 </body>
 </html>

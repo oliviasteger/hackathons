@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>timeTracker</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="shortcut icon" href="./favicon.png"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,700" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+  <script src="https://cloudboost.io/js-sdk/cloudboost.js"></script>
+<body>
+  <center><br><br><br><br><br><br><br><br><br><br>
+  <form name="login">
+  <input class="formInput" type="text" name="userid" placeholder="Email Address"/><br>
+  <input class="formInput" type="password" name="pswrd" placeholder="Password"/><br>
+  <input id="formButton" type="button" onclick="check(this.form)" value="Log In"/>
+  </form>
+<script>
+CB.CloudApp.init('wixevykblgjr', 'ebda80e2-fa2c-4a41-a258-c001314d3ae8');
+
+function check(form) {
+ var username = form.userid.value;
+ var query = new CB.CloudQuery("users");
+ var actpswd = "";
+ query.equalTo('emailAddress', username);
+ query.find({
+   success: function(list){
+     actpswd = list[0].document.password;
+     var pword = form.pswrd.value;
+     if (pword == actpswd) {
+        window.location.href = 'home.html';
+      } else {
+       alert("Error Password or Username");
+      }
+    }
+  });
+ }
+</script>
+</body>
+</html>

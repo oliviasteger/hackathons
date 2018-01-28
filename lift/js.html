@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>javascript ⏤ lift documentation</title>
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900" rel="stylesheet">
+</head>
+<body>
+<div id="header">
+  <h2 id="headerText"> lift documentation</h2>
+  <div id="links">
+    <a class="headerLink" href="index.html">HOME</a><a class="headerLink" href="markdown.html">MARKDOWN</a><a class="headerLink" href="ruby.html">RUBY</a><a class="headerLink" href="js.html">JAVASCRIPT</a><a class="headerLink" href="java.html">JAVA</a><a class="headerLink" href="reactnative.html">REACT NATIVE</a><a class="headerLink" href="cpp.html">C++</a>
+  </div>
+</div>
+
+<div id="content">
+  <br>
+  <h2 class="header">What is JavaScript?</h2>
+  <p class="docs">
+  JavaScript is used for programming the client-side of web pages. It is an object-oriented
+  programming language, which means that it has class and inheritance structures. JavaScript is
+  what controls forms and submit buttons on web features, along with all other interactive features.
+  </p>
+  <br>
+  <h2 class="header">Variables</h2>
+  <p class="docs">
+    JavaScript variables are containers for storing data values. In this example, x, y, and z, are variables:
+    <div class="code"> var x = 5; <br> var y = 6;<br> var z = x + y; </div>
+  </p>
+  <p class="docs">
+    From the example above, you can expect: x stores the value 5; y stores the value 6; z stores the value 11.
+    In programming, just like in algebra, we use variables (like x) to hold values. In programming,
+    just like in algebra, we use variables in expressions (z = x + y). From the example above, you can
+    calculate the total to be 11.<br><br>
+    All JavaScript variables must be identified with unique names. These unique names are called identifiers.
+    Identifiers can be short names (like x and y) or more descriptive names (age, sum, totalVolume).
+    <br><br>In JavaScript, the equal sign (=) is an "assignment" operator, not an "equal to" operator.
+    This is different from algebra. The following does not make sense in algebra:
+    <div class="code">x = x + 5</div>
+  </p>
+  <p class="docs">
+    In JavaScript, however, it makes perfect sense: it assigns the value of x +
+    5 to x. It calculates the value of x + 5 and puts the result into x. The value of x is incremented by 5.
+    <br>
+    <br>
+    JavaScript variables can hold numbers like 100 and text values like "John Doe".
+    In programming, text values are called text strings.
+    JavaScript can handle many types of data, but for now, just think of numbers
+    and strings. Strings are written inside double or single quotes. Numbers are
+    written without quotes. If you put a number in quotes, it will be treated as a text string.
+    <div class="code">var pi = 3.14;<br>var person = "John Doe";<br>var answer = 'Yes I am!';</div>
+  </p>
+  <p class="docs">
+    Creating a variable in JavaScript is called "declaring" a variable. You
+    declare a JavaScript variable with the var keyword:
+    <div class="code">var carName;</div>
+  </p>
+  <p class="docs">
+    After the declaration, the variable has no value.
+    To assign a value to the variable, use the equal sign:
+    <div class="code">carName = "Volvo";</div>
+  </p>
+  <p class="docs">
+    You can also assign a value to the variable when you declare it:
+    <div class="code">var carName = "Volvo";</div>
+  </p>
+  <p class="docs">
+    In the example below, we create a variable called carName and assign the value "Volvo" to it.
+    Then we "output" the value inside an HTML paragraph with id="demo":
+    <div class="code">
+      &lt;p id="demo"&gt;&lt;/p&gt;<br>
+      &lt;script&gt;<br>
+      &nbsp; var carName = "Volvo";<br>
+      &nbsp; document.getElementById("demo").innerHTML = carName;<br>
+      &lt;/script&gt;
+    </div>
+  </p>
+  <br>
+  <h2 class="header">Data Types</h2>
+  <p class="docs">
+    JavaScript variables can hold many data types: numbers, strings, objects and more:
+    <div class="code">
+      var length = 16;                               // Number<br>
+      var lastName = "Johnson";                      // String<br>
+      var x = {firstName:"John", lastName:"Doe"};    // Object
+    </div>
+  </p>
+  <p class="docs">
+    In programming, data types is an important concept. To be able to operate on
+    variables, it is important to know something about the type. Without data
+    types, a computer cannot safely solve this:
+    <div class="code">
+      var x = 16 + "Volvo";
+    </div>
+  </p>
+  <p class="docs">
+    Does it make any sense to add "Volvo" to sixteen? Will it produce an error
+    or will it produce a result? JavaScript will treat the example above as:
+    <div class="code">
+      var x = "16" + "Volvo";
+    </div>
+  </p>
+  <p class="docs">
+    A string (or a text string) is a series of characters like "John Doe".
+    Strings are written with quotes. You can use single or double quotes:
+    <div class="code">
+      var carName = "Volvo XC60";   // Using double quotes<br>
+      var carName = 'Volvo XC60';   // Using single quotes
+    </div>
+  </p>
+  <p class="docs">
+    JavaScript has only one type of numbers.
+    Numbers can be written with, or without decimals:
+    <div class="code">
+      var x1 = 34.00;     // Written with decimals<br>
+      var x2 = 34;        // Written without decimals
+    </div>
+  </p>
+  <p class="docs">
+    Booleans can only have two values: true or false.
+    <div class="code">
+      var x = 5;<br>
+      var y = 5;<br>
+      var z = 6;<br>
+      (x == y)       // Returns true<br>
+      (x == z)       // Returns false
+    </div>
+  </p>
+  <p class="docs">
+    JavaScript arrays are written with square brackets. Array items are separated by commas.
+    Array indexes are zero-based, which means the first item is [0], second is [1], and so on.
+    The following code declares (creates) an array called cars, containing three items (car names):
+    <div class="code">var cars = ["Saab", "Volvo", "BMW"];</div>
+  </p>
+  <p class="docs">
+    JavaScript objects are written with curly braces.
+    Object properties are written as name:value pairs, separated by commas.
+    The object (person) in the example below has 4 properties: firstName, lastName, age, and eyeColor.
+    <div class="code">var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};</div>
+  </p>
+  <br>
+  <h2 class="header">Methods</h2>
+  <p class="docs">
+    JavaScript methods are the actions that can be performed on objects. A
+    JavaScript method is a property containing a function definition.
+    In JavaScript, the thing called this, is the object that "owns" the JavaScript code.
+    The value of this, when used in a function, is the object that "owns" the function.
+    <br><br>
+    You access an object method with the following syntax:
+    <div class="code">objectName.fmethodName()</div>
+  </p>
+  <p class="docs">
+    This example uses the toUpperCase() method of the String object, to convert a text to uppercase:
+    <div class="code">var message = "Hello world!";<br>
+var x = message.toUpperCase();</div>
+  </p>
+  <p class="docs">
+    Adding a new method to an object is easy:
+    <div class="code">
+      person.name = function () {<br>
+          &nbsp; return this.firstName + " " + this.lastName;<br>
+      };
+    </div>
+  </p>
+  <p class="docs">
+    The length property returns the length of a string:
+    <div class="code">
+      var txt = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; <br>
+      var sln = txt.length; // will return 26</div>
+  </p>
+  <p class="docs">
+    The indexOf() method returns the index of (the position of) the first occurrence of a specified text in a string.
+    The lastIndexOf() method returns the index of the last occurrence of a specified text in a string.
+    Both methods accept a second parameter as the starting position for the search:
+    <div class="code">
+      var str = "Please locate where 'locate' occurs!";<br>
+      var foo = str.indexOf("locate");<br>
+      var bar = str.lastIndexOf("locate", 15);
+    </div>
+  </p>
+  <p class="docs">
+    The search() method searches a string for a specified value and returns the position of the match:
+    <div class="code">
+      var str = "Please locate where 'locate' occurs!";<br>
+      var pos = str.search("locate");
+    </div>
+  </p>
+  <p class="docs">
+    slice() extracts a part of a string and returns the extracted part in a new string.
+    The method takes 2 parameters: the starting index (position), and the ending index (position).
+    This example slices out a portion of a string from position 7 to position 13:
+    <div class="code">
+      var str = "Apple, Banana, Kiwi";<br>
+      var res = str.slice(7, 13);
+    </div>
+  </p>
+  <p class="docs">
+    The replace() method replaces a specified value with another value in a string.
+    By default, the replace() function replaces only the first match. To replace
+    all matches, use a regular expression with a /g flag (global match). By
+    default, the replace() function is case sensitive. To replace case
+    insensitive, use a regular expression with an /i flag (insensitive):
+    <div class="code">
+      str = "Please visit Microsoft!";<br>
+      var n = str.replace("Microsoft", "W3Schools");
+    </div>
+  </p>
+  <p class="docs">
+    A string is converted to upper case with toUpperCase(). A
+    string is converted to lower case with toLowerCase().
+    <div class="code">
+      var text1 = "Hello World!";<br>
+      var text2 = text1.toUpperCase(); <br>
+      var text3 = text1.toLowerCase();
+    </div>
+  </p>
+  <p class="docs">
+    concat() joins two or more strings. The concat() method can be used instead
+    of the plus operator.
+    <div class="code">
+      var text1 = "Hello";<br>
+      var text2 = "World";<br>
+      var text3 = text1.concat(" ", text2);
+    </div>
+  </p>
+  <p class="docs">
+    The charAt() method returns the character at a specified index (position) in a string:
+    <div class="code">var str = "HELLO WORLD";<br>
+    str.charAt(0);            // returns H</div>
+  </p>
+  <p class="docs">
+    toString() returns a number as a string. All number methods can be used on
+    any type of numbers (literals, variables, or expressions):
+    <div class="code">
+    var x = 123;<br>
+    x.toString();            // returns 123 from variable x<br>
+    (123).toString();        // returns 123 from literal 123<br>
+    (100 + 23).toString();   // returns 123 from expression 100 + 23
+    </div>
+  </p>
+  <p class="docs">
+    toExponential() returns a string, with a number rounded and written using exponential notation.
+    A parameter defines the number of characters behind the decimal point:
+    <div class="code">
+      var x = 9.656;<br>
+      x.toExponential(2);     // returns 9.66e+0<br>
+      x.toExponential(4);     // returns 9.6560e+0<br>
+      x.toExponential(6);     // returns 9.656000e+0
+    </div>
+  </p>
+  <p class="docs">
+    Number() can be used to convert JavaScript variables to numbers:
+    <div class="code">
+      x = true;<br>
+      Number(x);        // returns 1<br>
+      x = false;     <br>
+      Number(x);        // returns 0<br>
+      x = new Date();<br>
+      Number(x);        // returns 1404568027739<br>
+      x = "10"<br>
+      Number(x);        // returns 10<br>
+      x = "10 20"<br>
+      Number(x);        // returns NaN
+    </div>
+  </p>
+  <p class="docs">
+    parseInt() parses a string and returns a whole number. Spaces are allowed.
+    Only the first number is returned:
+    <div class="code">
+      parseInt("10");         // returns 10<br>
+      parseInt("10.33");      // returns 10<br>
+      parseInt("10 20 30");   // returns 10<br>
+      parseInt("10 years");   // returns 10<br>
+      parseInt("years 10");   // returns NaN
+    </div>
+  </p>
+  <p class="docs">
+    parseFloat() parses a string and returns a number. Spaces are allowed.
+    Only the first number is returned:
+    <div class="code">
+      parseFloat("10");        // returns 10<br>
+      parseFloat("10.33");     // returns 10.33<br>
+      parseFloat("10 20 30");  // returns 10<br>
+      parseFloat("10 years");  // returns 10<br>
+      parseFloat("years 10");  // returns NaN
+    </div>
+  </p>
+  <p class="docs">
+    Date methods let you get and set date values
+    (years, months, days, hours, minutes, seconds, milliseconds).
+    setDate()	lets you set the day as a number (1-31).
+    setFullYear()	lets you set the year (optionally month and day).
+    setHours() lets you set the hour (0-23).
+    setMilliseconds()	lets you set the milliseconds (0-999).
+    setMinutes()	lets you set the minutes (0-59).
+    setMonth()	lets you set the month (0-11).
+    setSeconds()	lets you set the seconds (0-59).
+    setTime()	lets you set the time (milliseconds since January 1, 1970).<br><br>
+    getDate()	lets you get the day as a number (1-31).
+    getDay()	lets you get the weekday as a number (0-6).
+    getFullYear()	lets you get the four digit year (yyyy).
+    getHours()	lets you get the hour (0-23).
+    getMilliseconds()	lets you get the milliseconds (0-999).
+    getMinutes()	lets you get the minutes (0-59).
+    getMonth()	lets you get the month (0-11).
+    getSeconds()	lets you get the seconds (0-59).
+    getTime()	lets you get the time (milliseconds since January 1, 1970).<br><br>
+
+    getTime() returns the number of milliseconds since January 1, 1970:
+    <div class="code">
+      &lt;script&gt;<br>
+        &nbsp; var d = new Date();<br>
+        &nbsp; document.getElementById("demo").innerHTML = d.getTime();<br>
+      &lt;/script&gt;
+    </div>
+  </p>
+  <p class="docs">
+    getFullYear() returns the year of a date as a four digit number:
+    <div class="code">
+      &lt;script&gt;<br>
+        &nbsp; var d = new Date();<br>
+        &nbsp; document.getElementById("demo").innerHTML = d.getFullYear();<br>
+      &lt;/script&gt;
+    </div>
+  </p>
+  <p class="docs">
+    The pop() method removes the last element from an array:
+    <div class="code">
+      var fruits = ["Banana", "Orange", "Apple", "Mango"];<br>
+      fruits.pop();
+    </div>
+  </p>
+  <p class="docs">
+    The push() method adds a new element to an array (at the end):
+    <div class="code">
+      var fruits = ["Banana", "Orange", "Apple", "Mango"];<br>
+      fruits.push();
+    </div>
+  </p>
+  <p class="docs">
+    Shifting is equivalent to popping, working on the first element instead of the last.
+    The shift() method removes the first array element and "shifts" all other elements to a lower index.
+    The unshift() method adds a new element to an array (at the beginning), and "unshifts" older elements.
+    <div class="code">
+      var fruits = ["Banana", "Orange", "Apple", "Mango"];<br>
+      fruits.shift();            // Removes the first element "Banana" from fruits<br>
+      fruits.unshift("Lemon");    // Adds a new element "Lemon" to fruits
+    </div>
+  </p>
+  <p class="docs">
+    Array elements are accessed using their index number.
+    Array indexes start with 0. [0] is the first array element, [1] is the second, [2] is the third, etc.
+    Since JavaScript arrays are objects, elements can be deleted by using the JavaScript operator delete:
+    <div class="code">
+      var fruits = ["Banana", "Orange", "Apple", "Mango"];<br>
+      delete fruits[0];           // Changes the first element in fruits to undefined
+    </div>
+  </p>
+  <p class="docs">
+    The splice() method can be used to add new items to an array:
+    <div class="code">
+      var fruits = ["Banana", "Orange", "Apple", "Mango"];<br>
+      fruits.splice(2, 0, "Lemon", "Kiwi");
+    </div>
+  </p>
+  <p class="docs">
+    The first parameter (2) defines the position where new elements should be added (spliced in).
+    The second parameter (0) defines how many elements should be removed.
+    The rest of the parameters ("Lemon" , "Kiwi") define the new elements to be added.<br><br>
+    The concat() method creates a new array by merging (concatenating) existing arrays:
+    <div class="code">
+      var myGirls = ["Cecilie", "Lone"];<br>
+      var myBoys = ["Emil", "Tobias", "Linus"];<br>
+      var myChildren = myGirls.concat(myBoys);     // Concatenates myGirls and myBoys
+    </div>
+  </p>
+  <br>
+  <h2 class="header">Functions</h2>
+  <p class="docs">
+    A JavaScript function is a block of code designed to perform a particular task.
+    A JavaScript function is executed when "something" invokes it (calls it).
+    <div class="code">
+      function myFunction(p1, p2) {<br>
+    &nbsp; return p1 * p2;              // The function returns the product of p1 and p2<br>
+        }
+    </div>
+  </p>
+  <p class="docs">
+    A JavaScript function is defined with the function keyword, followed by a name, followed by parentheses ().
+    Function names can contain letters, digits, underscores, and dollar signs (same rules as variables).
+    The parentheses may include parameter names separated by commas:
+    (parameter1, parameter2, ...).
+    The code to be executed, by the function, is placed inside curly brackets: {}.
+    Accessing a function without () will return the function definition instead of the function result:
+    <div class="code">
+      function name(parameter1, parameter2, parameter3) {<br>
+    &nbsp; code to be executed<br>
+  }
+    </div>
+  </p>
+  <p class="docs">
+    Function parameters are listed inside the brackets () of the function definition.
+    Function arguments are the values received by the function when it is invoked.
+    Inside the function, the arguments (the parameters) behave as local variables.
+    <br><br>
+    When JavaScript reaches a return statement, the function will stop executing.
+    If the function was invoked from a statement, JavaScript will "return" to execute the code after the invoking statement.
+    Functions often compute a return value. The return value is "returned" back to the "caller":
+    <div class="code">
+      var x = myFunction(4, 3);        // Function is called, return value will end up in x<br>
+      function myFunction(a, b) {<br>
+        &nbsp;  return a * b;                // Function returns the product of a and b<br>
+      }
+    </div>
+  </p>
+  <p class="docs">
+    Functions can be used the same way as you use variables, in all types of formulas, assignments, and calculations.
+    <div class="code">
+      var text = "The temperature is " + toCelsius(77) + " Celsius";
+    </div>
+  </p>
+
+  <br>
+  <h2 class="header">FAQ</h2>
+  <div class="question">
+    <h1 class="header" style="font-size: 21px;">Why is a semicolon necessary at the end of every line in JavaScript?</h1>
+    <p class="answer"><a href="https://stackoverflow.com/questions/444080/do-you-recommend-using-semicolons-after-every-statement-in-javascript">View the answer on StackOverflow.</a></p>
+  </div>
+  <br>
+  <h2 class="header">Sources</h2>
+  <div class="sources">
+  Information for this documentation was sourced from <a style="color: white; text-decoration: underline;" href="https://www.w3schools.com/">W3Schools</a>, <a style="color: white; text-decoration: underline;" href="https://stackoverflow.com/">StackOverflow</a>,
+  and the <a style="color: white; text-decoration: underline;" href="https://developer.mozilla.org/en-US/">Mozilla MDN</a>.</div>
+</div>
+<br><br>
+</body>
+</html>

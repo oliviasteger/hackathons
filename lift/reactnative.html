@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>lift documentation</title>
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900" rel="stylesheet">
+</head>
+<body>
+<div id="header">
+  <h2 id="headerText">lift documentation</h2>
+  <div id="links">
+    <a class="headerLink" href="index.html">HOME</a><a class="headerLink" href="markdown.html">MARKDOWN</a><a class="headerLink" href="ruby.html">RUBY</a><a class="headerLink" href="js.html">JAVASCRIPT</a><a class="headerLink" href="java.html">JAVA</a><a class="headerLink" href="reactnative.html">REACT NATIVE</a><a class="headerLink" href="cpp.html">C++</a>
+  </div>
+</div>
+
+<div id="content">
+  <br>
+  <h2 class="header">What is React Native?</h2>
+  <p class="docs">
+    React Native lets you build mobile apps using only JavaScript. It uses the same design as React, letting you compose a rich mobile UI from declarative components.
+    <br><br>
+    React Native is like React, but it uses native components instead of web components as building blocks. So to understand the basic structure of a React Native app, you need to understand some of the basic React concepts, like JSX, components, state, and props. If you already know React, you still need to learn some React-Native-specific stuff, like the native components.
+  </p>
+  <br>
+  <h2 class="header">Components</h2>
+  <p class="docs">When you're building a React Native app, you'll be making new components a lot. Anything you see on the screen is some sort of component. A component can be pretty simple - the only thing that's required is a render function which returns some JSX to render.
+    Most components can be customized when they are created, with different parameters. These creation parameters are called props.
+    You will have to import components from the react-native package, like Image below.
+  </p>
+  <p class="docs">
+    One basic React Native component is the Image. When you create an image, you can use a prop named source to control what image it shows.
+    <div class="code">
+      import React, { Component } from 'react';<br>
+      import { AppRegistry, Image } from 'react-native';<br>
+      <br>
+      export default class Bananas extends Component {<br>
+      &nbsp;  render() {<br>
+      &nbsp;&nbsp;    let pic = {<br>
+      &nbsp;&nbsp;&nbsp;      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'<br>
+      &nbsp;&nbsp;      };<br>
+      &nbsp;&nbsp;      return (<br>
+      &nbsp;&nbsp;  &nbsp;        &lt;Image source={pic} style={{width: 193, height: 110}}/&gt;<br>
+      &nbsp; &nbsp;       );<br>
+      &nbsp;      }<br>
+          }
+    </div>
+  </p>
+  <p class="docs">
+    Notice that {pic} is surrounded by braces, to embed the variable pic into JSX. You can put any JavaScript expression inside braces in JSX.
+Your own components can also use props. This lets you make a single component that is used in many different places in your app, with slightly different properties in each place. Just refer to this.props in your render function.
+  <br><br>
+  Some other common components include buttons, sliders, text inputs, and text. They can be used like this:
+  <div class="code">
+    &lt;Slider value={this.state.value} onValueChange={(value)=>this.setState({value})}/&gt;<br>
+    &lt;Text&gt;Value: {this.state.value}&lt;/Text&gt;<br>
+    &lt;Button onPress={onPressLearnMore} title="Learn More"/&gt;<br>
+    &lt;TextInput onChangeText={(text)=>this.setState({text})} value={this.state.text}/&gt;
+  </div>
+  </p>
+  <br>
+  <h2 class="header">Styling</h2>
+  <p class="docs">
+    With React Native, you don't use a special language or syntax for defining
+    styles. You just style your application using JavaScript. All of the core
+    components accept a prop named style. The style names and values usually
+    match how CSS works on the web, except names are written using camel casing,
+    e.g backgroundColor rather than background-color.
+    <br><br>
+    The style prop can be a plain old JavaScript object. That's the simplest
+    and what we usually use for example code. You can also pass an array of
+    styles - the last style in the array has precedence, so you can use this to inherit styles.
+    <br><br>
+    As a component grows in complexity, it is often cleaner to use
+    StyleSheet.create to define several styles in one place. Here's an example:
+    <div class="code">
+      import React, { Component } from 'react';<br>
+      import { AppRegistry, StyleSheet, Text, View } from 'react-native';<br>
+<br>
+      export default class LotsOfStyles extends Component {<br>
+  &nbsp;      render() {<br>
+    &nbsp;&nbsp;      return (<br>
+    &nbsp;&nbsp;&nbsp;        &lt;View&gt;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;          &lt;Text style={styles.red}&gt;just red&lt;/Text&gt;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;          &lt;Text style={styles.bigblue}&gt;just bigblue&lt;/Text&gt;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;            &lt;Text style={[styles.bigblue, styles.red]}&gt;bigblue, then red&lt;/Text&gt;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;            &lt;Text style={[styles.red, styles.bigblue]}&gt;red, then bigblue&lt;/Text&gt;<br>
+    &nbsp;&nbsp;&nbsp;        &lt;/View&gt;<br>
+    &nbsp;&nbsp;      );<br>
+  &nbsp;      }<br>
+      }<br>
+<br>
+      const styles = StyleSheet.create({<br>
+&nbsp;        bigblue: {<br>
+&nbsp;&nbsp;          color: 'blue',<br>
+&nbsp;&nbsp;          fontWeight: 'bold',<br>
+&nbsp;&nbsp;          fontSize: 30,<br>
+&nbsp;        },<br>
+  &nbsp;      red: {<br>
+  &nbsp;&nbsp;        color: 'red',<br>
+&nbsp;        },<br>
+      });
+    </div>
+  </p>
+  <p class="docs">A full list of all text styling variables for React Native is available <a href="http://facebook.github.io/react-native/docs/text.html">here</a>.
+  <br><br>A component's height and width determine its size on the screen. Width and heght can be set inside a component, like this:
+    <div class="code">
+      &lt;View style={{width: 50, height: 50, backgroundColor: 'powderblue'}} /&gt;<br>
+      &lt;View style={{width: 100, height: 100, backgroundColor: 'skyblue'}} /&gt;<br>
+      &lt;View style={{width: 150, height: 150, backgroundColor: 'steelblue'}} /&gt;
+    </div>
+  </p>
+  <p class="docs">
+    Use flex in a component's style to have the component expand and shrink
+    dynamically based on available space. Normally you will use flex: 1, which
+    tells a component to fill all available space, shared evenly amongst each
+    other component with the same parent. The larger the flex given, the higher
+    the ratio of space a component will take compared to its siblings.
+    <div class="code">
+      &lt;View style={{flex: 1, backgroundColor: 'powderblue'}} /&gt;<br>
+      &lt;View style={{flex: 2, backgroundColor: 'skyblue'}} /&gt;<br>
+      &lt;View style={{flex: 3, backgroundColor: 'steelblue'}} /&gt;
+    </div>
+  </p>
+  <br>
+  <h2 class="header">Views</h2>
+  <p class="docs">Views can be used to insert things like maps and scrolling abilities into your React Native project. The example below allows users to scroll through text.
+  <div class="code">
+    &lt;ScrollView&gt;<br>
+        &nbsp;    &lt;Text style={{fontSize:96}}&gt;Scroll me plz&lt;/Text&gt;<br>
+        &nbsp;    &lt;Text style={{fontSize:96}}&gt;If you like&lt;/Text&gt;<br>
+        &nbsp;    &lt;Text style={{fontSize:96}}&gt;Scrolling down&lt;/Text&gt;<br>
+        &nbsp;    &lt;Text style={{fontSize:96}}&gt;What's the best&lt;/Text&gt;<br>
+        &nbsp;    &lt;Text style={{fontSize:96}}&gt;Framework around?&lt;/Text&gt;<br>
+        &nbsp;    &lt;Text style={{fontSize:80}}&gt;React Native&lt;/Text&gt;<br>
+          &lt;/ScrollView&gt;
+        </div>
+  </p>
+  <br>
+  <h2 class="header">Packages</h2>
+  <p class="docs">
+    Packages are an integral part of React Native. You can install packages through Node
+    that allow you to use radio buttons, maps, and other elements that are not included
+    in the original React Native package. Packages also enable the use of databases
+    and APIs in your project.<br><br>
+    Importing from a package is very similar to importing from the React Native package.
+    You import in this format:
+    <div class="code">
+      import PropTypes from 'prop-types';
+    </div>
+  </p>
+  <br>
+  <h2 class="header">Testing</h2>
+  <p class="docs">
+    To test your app, download the <a href="https://expo.io/">Expo</a> development tool.
+    Open the desktop app, and open your project inside the desktop app. Wait for the project
+    to compile, then click open in device. This will open your project on an iOS simulator.
+    <br><br>
+    From here, you can debug your app without using XCode.
+  </p>
+  <br>
+  <h2 class="header">FAQ</h2>
+  <div class="question">
+    <h1 class="header" style="font-size: 21px;">What is difference between React Native and React?</h1>
+    <p class="answer"><a href="https://stackoverflow.com/questions/34641582/what-is-difference-between-react-native-vs-react">View the answer on StackOverflow.</a></p>
+  </div>
+  <div class="question">
+    <h1 class="header" style="font-size: 21px;">How to add icons to React Native app</h1>
+    <p class="answer"><a href="https://stackoverflow.com/questions/34329715/how-to-add-icons-to-react-native-app">View the answer on StackOverflow.</a></p>
+  </div>
+  <div class="question">
+    <h1 class="header" style="font-size: 21px;">React Native failed to load Android JS bundle</h1>
+    <p class="answer"><a href="https://stackoverflow.com/questions/32572399/react-native-android-failed-to-load-js-bundle">View the answer on StackOverflow.</a></p>
+  </div>
+  <div class="question">
+    <h1 class="header" style="font-size: 21px;">How do you debug react-native?</h1>
+    <p class="answer"><a href="https://stackoverflow.com/questions/29289304/how-do-you-debug-react-native">View the answer on StackOverflow.</a></p>
+  </div>
+  <br>
+  <h2 class="header">Sources</h2>
+  <div class="sources">
+  Information for this documentation was sourced from <a style="color: white; text-decoration: underline;" href="https://facebook.github.io/react-native/">Facebook Documentation</a>, <a style="color: white; text-decoration: underline;" href="https://medium.com/">Medium</a>,
+  <a style="color: white; text-decoration: underline;" href="http://www.reactnative.com/">React Native</a>,
+  and <a style="color: white; text-decoration: underline;" href="https://stackoverflow.com/">Stack Overflow</a>.</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>javascript ⏤ lift documentation</title>
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<div id="header">
+  <h2 id="headerText"> lift documentation</h2>
+  <div id="links">
+    <a class="headerLink" href="index.html">HOME</a><a class="headerLink" href="markdown.html">MARKDOWN</a><a class="headerLink" href="ruby.html">RUBY</a><a class="headerLink" href="js.html">JAVASCRIPT</a><a class="headerLink" href="java.html">JAVA</a><a class="headerLink" href="reactnative.html">REACT NATIVE</a><a class="headerLink" href="cpp.html">C++</a>
+  </div>
+</div>
+
+<div id="content">
+
+</div>
+<br><br>
+<script>
+$.getJSON("https://raw.githubusercontent.com/oliviasteger/lift/master/md.json", function(data) {
+  var content = "<br><br>";
+    for (var i = 0; i < data.length; i++) {
+      if (i % 2 == 1) {
+        var datastring = '<p class="docs"><div class="code">' + data[i] + '</div></p>';
+        content = content + datastring;
+      } else {
+        var datastring = '<p class="docs">' + data[i] + '</p>';
+        content = content + data[i];
+      }
+    }
+    document.getElementById("content").innerHTML = content;
+});
+</script>
+</body>
+</html>
